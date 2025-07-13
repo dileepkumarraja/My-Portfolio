@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dileep Kumar Raja | Full‑Stack Developer</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- tsParticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <style>
+    :root {
+      --clr-primary: #00f7ff;
+      --clr-accent: #ff00c8;
+      --clr-bg: #0a0a1f;
+      --clr-bg2: #161628;
+      --clr-card: #1d1d2f;
+      --clr-text: #e0e0e0;
+      --clr-shadow: rgba(0, 0, 0, 0.65);
+    }
+
+    :root.light-mode {
+      --clr-primary: #0057ff;
+      --clr-accent: #e91e63;
+      --clr-bg: #f4f4f8;
+      --clr-bg2: #eaeaf5;
+      --clr-card: #ffffff;
+      --clr-text: #1b1e28;
+      --clr-shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.35s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--clr-bg), var(--clr-bg2));
+  color: var(--clr-text);
+  position: relative;
+  overflow-x: hidden;
+  transition: transform 0.3s ease;
+}
+
+    #tsparticles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 6%;
+      background: var(--clr-card);
+      box-shadow: 0 3px 6px var(--clr-shadow);
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      cursor: pointer;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--clr-text);
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--clr-primary);
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--clr-primary);
+      text-shadow: 0 0 8px var(--clr-primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    #theme-toggle {
+  background: transparent;
+  border: 2px solid var(--clr-primary);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  color: var(--clr-primary);
+  font-size: 1.2rem;
+  margin-left: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+    #theme-toggle:hover {
+  background-color: var(--clr-accent);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px var(--clr-accent), 0 0 24px var(--clr-accent);
+  z-index: 2;
+}
+
+    section {
+      padding: 3rem 6%;
+      max-width: 1100px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+      color: var(--clr-primary);
+      animation: fadeInUp 1.3s ease forwards;
+    }
+
+    .hero-text p {
+      font-size: 1.15rem;
+      color: #b7b7c9;
+    }
+
+    .hero-img {
+      flex: 1;
+      text-align: center;
+    }
+
+    .photo-transform {
+      width: 100%;
+      max-width: 320px;
+      margin: auto;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .photo-transform img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 12px 24px var(--clr-shadow);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .photo-transform:hover img {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 0 20px var(--clr-primary), 0 0 35px var(--clr-accent);
+    }
+
+    .card {
+      background: var(--clr-card);
+      border-radius: 18px;
+      padding: 2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 6px 18px var(--clr-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 10px 30px var(--clr-shadow), 0 0 18px var(--clr-primary);
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--clr-primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .skills span {
+      display: inline-block;
+      padding: 0.55rem 1.3rem;
+      margin: 0.35rem;
+      background: #282639;
+      border-radius: 28px;
+      font-size: 0.9rem;
+      color: var(--clr-text);
+    }
+
+    .skills span:hover {
+      background: var(--clr-accent);
+      color: #fff;
+      transform: scale(1.12) rotate(-1deg);
+      box-shadow: 0 0 10px var(--clr-accent), 0 0 20px var(--clr-accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      background: var(--clr-card);
+      color: #888;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  #theme-toggle::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle, var(--clr-accent) 0%, transparent 70%);
+  opacity: 0.2;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#theme-toggle:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+  /* === Ripple hover for nav links === */
+  nav a {
+    position: relative;
+    overflow: hidden; /* allow pseudo ripple */
+  }
+  nav a::before {
+    content: "";
+    position: absolute;
+    width: 180%;
+    height: 180%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--clr-primary) 0%, transparent 70%);
+    opacity: 0.18;
+    transition: transform 0.4s ease;
+    pointer-events: none;
+  }
+  nav a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* === Ripple hover for skills chips === */
+  .skills span {
+    position: relative;
+    overflow: hidden;
+  }
+  .skills span::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--clr-accent) 0%, transparent 70%);
+    opacity: 0.2;
+    transition: transform 0.4s ease;
+    pointer-events: none;
+  }
+  .skills span:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+.card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.card:hover {
+  transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y)) scale(1.01);
+}
+.transform-hover {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+.transform-hover:hover {
+  transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y)) scale(1.01);
+}
+  .motion-fade {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeMotion 0.8s ease-out forwards;
+  }
+  .motion-slide {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideMotion 0.8s ease-out forwards;
+  }
+  @keyframes fadeMotion {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideMotion {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div id="tsparticles"></div>
+
+  <header>
+    <div class="logo">Dileep Kumar<span></span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle theme" title="Toggle Light/Dark Mode">🌗</button>
+  </header>
+
+  <section class="hero transform-hover motion-fade">
+    <div class="hero-text motion-slide">
+      <h1>Hi, I'm Dileep Kumar</h1>
+      <p>Full‑stack Web Developer.</p>
+    </div>
+    <div class="hero-img">
+      <div class="photo-transform transform-hover">
+        <img src="dileepportfolio.jpg" alt="Dileep Kumar Raja">
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="card">
+    <h2>About Me</h2>
+    <p>B.Tech graduate in Electronics & Communication Engineering with a passion for full‑stack development (Java, HTML, CSS, JS, SQL, Python). Quick‑learning problem solver dedicated to crafting polished digital products.</p>
+  </section>
+
+  <section id="skills" class="card">
+    <h2>Technical Skills</h2>
+    <div class="skills transform-hover">
+      <span>Java</span><span>Python</span><span>SQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+    </div>
+  </section>
+
+  <section id="education" class="card">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>B.Tech in ECE</strong> – Rajeev Gandhi Memorial College (CGPA: 6.94)</li>
+      <li><strong>Intermediate (MPC)</strong> – Saiparameswara Junior College (CGPA: 7.89)</li>
+      <li><strong>SSC</strong> – ZPHS School (CGPA: 8.3)</li>
+    </ul>
+  </section>
+
+  <section id="certifications" class="card">
+    <h2>Certifications & Achievements</h2>
+    <ul>
+      <li>Smart India Hackathon 2022 Participant</li>
+      <li>NPTEL Certifications in IoT & Soft Skills</li>
+      <li>Virtual Internship in AI‑ML</li>
+      <li>District‑level Volleyball Player</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="card">
+    <h2>Contact</h2>
+    <ul>
+      <li>Email: dileepkumarraja38@gmail.com</li>
+      <li>Phone: 8688366700</li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/dileep-kumar-raja-174b74345" target="_blank">View Profile</a></li>
+      <li>GitHub: <a href="https://github.com/" target="_blank">View Profile</a></li>
+    </ul>
+  </section>
+
+  <footer class="transform-hover">
+    © 2025 Dileep Kumar Raja. All rights reserved.
+  </footer>
+
+  <script>
+    // Card tilt effect + Hero transformation
+    document.querySelectorAll('.card, .transform-hover').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = ((y / rect.height) - 0.5) * 10;
+        const rotateY = ((x / rect.width) - 0.5) * -10;
+        card.style.setProperty('--rotate-x', `${rotateY}deg`);
+        card.style.setProperty('--rotate-y', `${rotateX}deg`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--rotate-x', '0deg');
+        card.style.setProperty('--rotate-y', '0deg');
+      });
+    });
+
+    // Animate body on cursor movement
+    document.addEventListener('mousemove', (e) => {
+      const offsetX = (e.clientX / window.innerWidth - 0.5) * 10;
+      const offsetY = (e.clientY / window.innerHeight - 0.5) * 10;
+      document.body.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    });
+
+
+    if(localStorage.getItem('theme')==='light'){
+      document.documentElement.classList.add('light-mode');
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click',()=>{
+      const isLight=document.documentElement.classList.toggle('light-mode');
+      localStorage.setItem('theme',isLight?'light':'dark');
+    });
+
+    document.addEventListener('mousemove',e=>{
+      const x=e.clientX/window.innerWidth;
+      const y=e.clientY/window.innerHeight;
+      const hueP=Math.floor(210+x*120);
+      const hueA=Math.floor(y*360);
+      document.documentElement.style.setProperty('--clr-primary',`hsl(${hueP}deg 100% 60%)`);
+      document.documentElement.style.setProperty('--clr-accent',`hsl(${hueA}deg 100% 55%)`);
+    });
+
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      background: { color: "transparent" },
+      particles: {
+        number: { value: 80 },
+        color: { value: ["#00f7ff", "#ff00c8"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 2 },
+        move: {
+          enable: true,
+          speed: 0.6,
+          direction: "none",
+          outMode: "bounce"
+        },
+        links: {
+          enable: true,
+          distance: 120,
+          color: "#888",
+          opacity: 0.3,
+          width: 1
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+</body>
+</html>
